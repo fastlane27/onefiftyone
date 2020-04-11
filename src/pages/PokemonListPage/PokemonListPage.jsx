@@ -1,8 +1,15 @@
 import React from 'react';
 
-function PokemonListPage() {
+function PokemonListPage(props) {
   return (
-    <h1>Pokemon</h1>
+    <div>
+      <h1>Pokemon</h1>
+      {props.user ?
+        <h3>Logged in as {props.user.name}</h3>
+        :
+        <h3>Not logged in.</h3>
+      }
+    </div>
   );
 }
 
