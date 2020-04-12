@@ -7,6 +7,7 @@ function LoginPage(props) {
     email: '',
     password: ''
   });
+  const [message, setMessage] = useState('');
 
   const handleChange = (e) => {
     setLoginData({
@@ -22,12 +23,16 @@ function LoginPage(props) {
       props.handleSignupOrLogin();
       props.history.push('/');
     } catch(err) {
-      alert('Invalid Credentials!');
+      updateMessage(err.message);
     }
   }
 
   const isFormInvalid = () => {
     return !(loginData.email && loginData.password);
+  }
+
+  const updateMessage = (msg) => {
+    setMessage(msg);
   }
 
   return (
@@ -38,6 +43,7 @@ function LoginPage(props) {
         <input type="password" placeholder="Password" value={loginData.password} name="password" onChange={handleChange} />
         <button type="submit" disabled={isFormInvalid()}>Log In</button>
       </form>
+      <p>{message}</p>
       <Link to='/'>Cancel</Link>
     </div>
   );
