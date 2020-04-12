@@ -1,24 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, NavLink } from 'react-router-dom';
 import './App.css';
 import PokemonListPage from '../PokemonListPage/PokemonListPage';
+import PokemonDetailPage from '../PokemonDetailPage/PokemonDetailPage';
 import ForumPage from '../ForumPage/ForumPage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../services/userService';
+import { getAllPokemon } from '../../services/pokeapiService';
 
 function App() {
-  const [state, setState] = useState({
-    user: userService.getUser()
-  });
+  const [user, setUser] = useState(userService.getUser());
+  const [pokemon, setPokemon] = useState([]);
+
+  useEffect(() => {
+    async function fetchPokemon() {
+      try {
+        const { results } = await getAllPokemon();
+        setPokemon(results);
+      } catch(err) {
+        console.log(err);
+      }
+    }
+    fetchPokemon();
+  }, []);
 
   const handleLogout = () => {
     userService.logout();
-    setState({user: null});
+    setUser(null);
   }
 
   const handleSignupOrLogin = () => {
-    setState({user: userService.getUser()});
+    setUser(userService.getUser());
   }
 
   return (
@@ -31,12 +44,22 @@ function App() {
           <NavLink exact to="/login">Log In</NavLink>
           <NavLink to="" onClick={handleLogout}>Log Out</NavLink>
         </nav>
+        {user ?
+        <p>Logged in as {user.name}</p>
+        :
+        <p>Not logged in.</p>
+        }
       </header>
       <main>
         <Switch>
           <Route exact path="/" render={() => 
             <PokemonListPage
-              user={state.user}
+              pokemon={pokemon}
+            />
+          } />
+          <Route path="/pokemon/:id" render={({match}) => 
+            <PokemonDetailPage
+              match={match}
             />
           } />
           <Route exact path="/forum" render={() => 
