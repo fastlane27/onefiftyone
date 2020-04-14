@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import userService from '../../services/userService';
+import userAPI from '../../services/userAPI';
 
 function LoginPage(props) {
   const [loginData, setLoginData] = useState({
@@ -19,7 +19,7 @@ function LoginPage(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await userService.login(loginData);
+      await userAPI.login(loginData);
       props.handleSignupOrLogin();
       props.history.push('/');
     } catch(err) {
@@ -27,9 +27,7 @@ function LoginPage(props) {
     }
   }
 
-  const isFormInvalid = () => {
-    return !(loginData.email && loginData.password);
-  }
+  const isFormInvalid = () => !(loginData.email && loginData.password);
 
   const updateMessage = (msg) => {
     setMessage(msg);
@@ -39,8 +37,20 @@ function LoginPage(props) {
     <div>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="Email" value={loginData.email} name="email" onChange={handleChange} />
-        <input type="password" placeholder="Password" value={loginData.password} name="password" onChange={handleChange} />
+        <input
+          type="email"
+          placeholder="Email"
+          value={loginData.email}
+          name="email"
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={loginData.password}
+          name="password"
+          onChange={handleChange}
+        />
         <button type="submit" disabled={isFormInvalid()}>Log In</button>
       </form>
       <p>{message}</p>

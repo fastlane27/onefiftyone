@@ -6,18 +6,18 @@ import PokemonDetailPage from '../PokemonDetailPage/PokemonDetailPage';
 import ForumPage from '../ForumPage/ForumPage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
-import userService from '../../services/userService';
-import { getAllPokemon } from '../../services/pokeapiService';
+import userAPI from '../../services/userAPI';
+import pokeAPI from '../../services/pokeAPI';
 
 function App() {
-  const [user, setUser] = useState(userService.getUser());
-  const [pokemon, setPokemon] = useState([]);
+  const [currentUser, setCurrentUser] = useState(userAPI.getCurrent());
+  const [allPokemon, setAllPokemon] = useState([]);
 
   useEffect(() => {
-    async function fetchPokemon() {
+    const fetchPokemon = async () => {
       try {
-        const { results } = await getAllPokemon();
-        setPokemon(results);
+        const { results } = await pokeAPI.getAll();
+        setAllPokemon(results);
       } catch(err) {
         console.log(err);
       }
@@ -26,12 +26,12 @@ function App() {
   }, []);
 
   const handleLogout = () => {
-    userService.logout();
-    setUser(null);
+    userAPI.logout();
+    setCurrentUser(null);
   }
 
   const handleSignupOrLogin = () => {
-    setUser(userService.getUser());
+    setCurrentUser(userAPI.getCurrent());
   }
 
   return (
@@ -44,22 +44,23 @@ function App() {
           <NavLink exact to="/login">Log In</NavLink>
           <NavLink to="" onClick={handleLogout}>Log Out</NavLink>
         </nav>
-        {user ?
-        <p>Logged in as {user.name}</p>
+        {currentUser ?
+          <p>Logged in as {currentUser.name}</p>
         :
-        <p>Not logged in.</p>
+          <p>Not logged in.</p>
         }
       </header>
       <main>
         <Switch>
           <Route exact path="/" render={() => 
             <PokemonListPage
-              pokemon={pokemon}
+              allPokemon={allPokemon}
             />
           } />
           <Route path="/pokemon/:id" render={({match}) => 
             <PokemonDetailPage
               match={match}
+              currentUser={currentUser}
             />
           } />
           <Route exact path="/forum" render={() => 

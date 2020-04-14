@@ -12,7 +12,10 @@ const postSchema = new Schema({
     required: true,
     match: /\S/
   },
-  createdBy: Schema.Types.ObjectId,
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   comments: [Schema.Types.ObjectId]
 }, {
   timestamps: true

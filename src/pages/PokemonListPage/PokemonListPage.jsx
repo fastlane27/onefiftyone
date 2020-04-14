@@ -6,7 +6,7 @@ function PokemonListPage(props) {
   return (
     <div>
       <h1>Pokemon</h1>
-      {props.pokemon.map((p, idx) =>
+      {props.allPokemon.map((p, idx) =>
         <Link
           className="pokemon-link"
           to={'/pokemon/' + (idx + 1)}

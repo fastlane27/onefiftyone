@@ -7,7 +7,10 @@ const commentSchema = new Schema({
     required: true,
     match: /\S/
   },
-  createdBy: Schema.Types.ObjectId,
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
   pokemonId: Number
 }, {
   timestamps: true

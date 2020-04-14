@@ -15,14 +15,6 @@ function signup(user) {
   .then(({token}) => tokenService.setToken(token));
 }
 
-function getUser() {
-  return tokenService.getUserFromToken();
-}
-
-function logout() {
-  tokenService.removeToken();
-}
-
 function login(creds) {
   return fetch(BASE_URL + 'login', {
     method: 'POST',
@@ -36,9 +28,22 @@ function login(creds) {
   .then(({token}) => tokenService.setToken(token));
 }
 
+function logout() {
+  tokenService.removeToken();
+}
+
+function getCurrent() {
+  return tokenService.getUserFromToken();
+}
+
+function getUser(id) {
+  return fetch(BASE_URL + id).then(res => res.json());
+}
+
 export default {
   signup, 
-  getUser,
+  login,
   logout,
-  login
+  getCurrent,
+  getUser
 };
