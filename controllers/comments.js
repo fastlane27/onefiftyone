@@ -9,7 +9,9 @@ module.exports = {
 
 async function create(req, res) {
   try {
+    req.body.createdBy = req.user._id;
     const comment = await Comment.create(req.body);
+    await comment.populate('createdBy').execPopulate();
     res.status(201).json(comment);
   } catch(err) {
     res.status(500).json(err);

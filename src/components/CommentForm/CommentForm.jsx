@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import commentAPI from '../../services/commentAPI';
 
 function CommentForm(props) {
   const [commentData, setCommentData] = useState({
     content: '',
-    createdBy: props.currentUser._id,
     pokemonId: props.pokemonId
   });
 
@@ -15,15 +13,10 @@ function CommentForm(props) {
     });
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await commentAPI.create(commentData);
-      setCommentData({...commentData, content: ''});
-      props.handleCommentChange();
-    } catch(err) {
-      console.log(err);
-    }
+    props.handleAddComment(commentData);
+    setCommentData({...commentData, content: ''});
   }
 
   return (

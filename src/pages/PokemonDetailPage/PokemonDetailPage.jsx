@@ -6,10 +6,7 @@ import commentAPI from '../../services/commentAPI';
 
 function PokemonDetailPage(props) {
   const [pokemon, setPokemon] = useState({});
-  const [comments, setComments] = useState({
-    comments: [],
-    isChanged: false
-  });
+  const [comments, setComments] = useState([]);
   const pokemonId = props.match.params.id;
 
   useEffect(() => {
@@ -21,33 +18,26 @@ function PokemonDetailPage(props) {
         console.log(err);
       }
     }
-    fetchPokemon();
-  }, [pokemonId]);
-
-  useEffect(() => {
     const fetchComments = async () => {
       try {
         const results = await commentAPI.get(pokemonId);
-        setComments({
-          ...comments,
-          comments: results,
-        });
+        setComments(results);
       } catch(err) {
         console.log(err);
       }
     }
+    fetchPokemon();
     fetchComments();
-  }, [pokemonId, comments.isChanged]);
+  }, [pokemonId]);
 
-  const handleCommentChange = () => {
-    setComments({
-      ...comments,
-      isChanged: !comments.isChanged
-    });
+  const handleAddComment = async (commentData) => {
+    const newComment = await commentAPI.create(commentData);
+    setComments([...comments, newComment]);
   }
 
-  const toggleEditView = () => {
-
+  const handleDeleteComment = async (commentId) => {
+    await commentAPI.deleteOne(commentId);
+    setComments(comments.filter(comment => comment._id !== commentId));
   }
 
   return (
@@ -60,13 +50,12 @@ function PokemonDetailPage(props) {
       {props.currentUser &&
         <CommentForm
           pokemonId={pokemonId}
-          currentUser={props.currentUser}
-          handleCommentChange={handleCommentChange}
+          handleAddComment={handleAddComment}
         />
       }
       <Comments
-        comments={comments.comments}
-        handleCommentChange={handleCommentChange}
+        comments={comments}
+        handleDeleteComment={handleDeleteComment}
       />
     </div>
   );
