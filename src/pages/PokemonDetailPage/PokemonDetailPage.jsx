@@ -6,7 +6,10 @@ import commentAPI from '../../services/commentAPI';
 
 function PokemonDetailPage(props) {
   const [pokemon, setPokemon] = useState({});
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState({
+    comments: [],
+    isChanged: false
+  });
   const pokemonId = props.match.params.id;
 
   useEffect(() => {
@@ -18,26 +21,33 @@ function PokemonDetailPage(props) {
         console.log(err);
       }
     }
-    
+    fetchPokemon();
+  }, [pokemonId]);
+
+  useEffect(() => {
     const fetchComments = async () => {
       try {
         const results = await commentAPI.get(pokemonId);
-        setComments(results);
+        setComments({
+          ...comments,
+          comments: results,
+        });
       } catch(err) {
         console.log(err);
       }
     }
-
-    fetchPokemon();
     fetchComments();
-  }, [pokemonId]);
+  }, [pokemonId, comments.isChanged]);
 
-  const handleAddComment = (newComment) => {
-    setComments([...comments, newComment]);
+  const handleCommentChange = () => {
+    setComments({
+      ...comments,
+      isChanged: !comments.isChanged
+    });
   }
 
-  const handleRemoveComment = () => {
-    
+  const toggleEditView = () => {
+
   }
 
   return (
@@ -51,11 +61,12 @@ function PokemonDetailPage(props) {
         <CommentForm
           pokemonId={pokemonId}
           currentUser={props.currentUser}
-          handleAddComment={handleAddComment}
+          handleCommentChange={handleCommentChange}
         />
       }
       <Comments
-        comments={comments}
+        comments={comments.comments}
+        handleCommentChange={handleCommentChange}
       />
     </div>
   );

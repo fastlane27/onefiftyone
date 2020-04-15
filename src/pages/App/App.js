@@ -14,7 +14,7 @@ function App() {
   const [allPokemon, setAllPokemon] = useState([]);
 
   useEffect(() => {
-    const fetchPokemon = async () => {
+    const fetchAllPokemon = async () => {
       try {
         const { results } = await pokeAPI.getAll();
         setAllPokemon(results);
@@ -22,7 +22,7 @@ function App() {
         console.log(err);
       }
     }
-    fetchPokemon();
+    fetchAllPokemon();
   }, []);
 
   const handleLogout = () => {

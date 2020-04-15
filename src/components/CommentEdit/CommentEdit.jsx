@@ -30,7 +30,6 @@ function CommentForm(props) {
     <div>
       <form onSubmit={handleSubmit}>
         <textarea
-          placeholder="Leave a comment..."
           value={commentData.content}
           name="content"
           onChange={handleChange}
