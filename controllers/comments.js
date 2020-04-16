@@ -43,9 +43,15 @@ async function deleteOne(req, res) {
 
 async function update(req, res) {
   try {
-    const updatedComment = await Comment.findByIdAndUpdate(req.params.id, req.body, {new: true});
-    await updatedComment.populate('createdBy').execPopulate();
-    res.status(200).json(updatedComment);
+    const comment = await Comment.findById(req.params.id);
+    if (comment.createdBy.equals(req.user._id)) {
+      comment.overwrite(req.body);
+      await comment.save();
+      await comment.populate('createdBy').execPopulate();
+      res.status(200).json(comment);
+    } else {
+      res.status(401).json({err: 'Not Authorized'});
+    }
   } catch(err) {
     res.status(500).json(err);
   }
