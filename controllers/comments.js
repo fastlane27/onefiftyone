@@ -39,6 +39,7 @@ async function deleteOne(req, res) {
 async function update(req, res) {
   try {
     const updatedComment = await Comment.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    await updatedComment.populate('createdBy').execPopulate();
     res.status(200).json(updatedComment);
   } catch(err) {
     res.status(500).json(err);

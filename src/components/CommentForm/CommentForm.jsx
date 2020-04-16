@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 
 function CommentForm(props) {
-  const [commentData, setCommentData] = useState({
-    content: '',
-    pokemonId: props.pokemonId
-  });
+  const [commentData, setCommentData] = useState({content: ''});
 
   const handleChange = (e) => {
-    setCommentData({
-      ...commentData,
-      [e.target.name]: e.target.value
-    });
+    setCommentData({content: e.target.value});
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     props.handleAddComment(commentData);
-    setCommentData({...commentData, content: ''});
+    setCommentData({content: ''});
   }
 
   return (
@@ -25,7 +19,6 @@ function CommentForm(props) {
         <textarea
           placeholder="Leave a comment..."
           value={commentData.content}
-          name="content"
           onChange={handleChange}
         />
         <button type="submit">POST</button>

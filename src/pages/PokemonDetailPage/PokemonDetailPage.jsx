@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Comments from '../../components/Comments/Comments';
+import Comment from '../../components/Comment/Comment';
 import CommentForm from '../../components/CommentForm/CommentForm';
+import CommentEdit from '../../components/CommentEdit/CommentEdit';
 import pokeAPI from '../../services/pokeAPI';
 import commentAPI from '../../services/commentAPI';
 
@@ -31,13 +32,19 @@ function PokemonDetailPage(props) {
   }, [pokemonId]);
 
   const handleAddComment = async (commentData) => {
-    const newComment = await commentAPI.create(commentData);
+    commentData.pokemonId = pokemonId;
+    const newComment = await commentAPI.create(commentData, pokemonId);
     setComments([...comments, newComment]);
   }
 
   const handleDeleteComment = async (commentId) => {
     await commentAPI.deleteOne(commentId);
     setComments(comments.filter(comment => comment._id !== commentId));
+  }
+
+  const handleEditComment = async (commentData) => {
+    const editedComment = await commentAPI.update(commentData);
+    setComments(comments.map(comment => comment._id === editedComment._id ? editedComment : comment));
   }
 
   return (
@@ -49,14 +56,21 @@ function PokemonDetailPage(props) {
       />
       {props.currentUser &&
         <CommentForm
-          pokemonId={pokemonId}
           handleAddComment={handleAddComment}
         />
       }
-      <Comments
-        comments={comments}
-        handleDeleteComment={handleDeleteComment}
-      />
+      {comments.map(comment =>
+        <div key={comment._id}>
+          <Comment
+            comment={comment}
+            handleDeleteComment={handleDeleteComment}
+          />
+          <CommentEdit 
+            comment={comment}
+            handleEditComment={handleEditComment}
+          />
+        </div>
+      )}
     </div>
   );
 }

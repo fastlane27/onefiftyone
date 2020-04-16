@@ -1,29 +1,18 @@
 import React, { useState } from 'react';
-import commentAPI from '../../services/commentAPI';
 
-function CommentForm(props) {
-  const [commentData, setCommentData] = useState({
-    content: '',
-    createdBy: props.currentUser._id,
-    pokemonId: props.pokemonId
-  });
+function CommentEdit(props) {
+  const [commentData, setCommentData] = useState(props.comment);
 
   const handleChange = (e) => {
     setCommentData({
       ...commentData,
-      [e.target.name]: e.target.value
+      content: e.target.value
     });
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await commentAPI.create(commentData);
-      setCommentData({...commentData, content: ''});
-      props.handleCommentChange();
-    } catch(err) {
-      console.log(err);
-    }
+    props.handleEditComment(commentData);
   }
 
   return (
@@ -31,13 +20,12 @@ function CommentForm(props) {
       <form onSubmit={handleSubmit}>
         <textarea
           value={commentData.content}
-          name="content"
           onChange={handleChange}
         />
-        <button type="submit">POST</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
 }
 
-export default CommentForm;
+export default CommentEdit;
