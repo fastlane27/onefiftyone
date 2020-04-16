@@ -14,7 +14,7 @@ async function signup(req, res) {
     const token = createJWT(user);
     res.json({token});
   } catch(err) {
-    res.status(400).json(err);
+    res.status(400).json({err: 'Invalid Submission'});
   }
 }
 
@@ -31,7 +31,7 @@ async function login(req, res) {
       }
     });
   } catch(err) {
-    return res.status(401).json(err);
+    return res.status(400).json({err: 'Invalid Submission'});
   }
 }
 

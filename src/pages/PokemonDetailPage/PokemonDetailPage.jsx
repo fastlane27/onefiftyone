@@ -12,20 +12,12 @@ function PokemonDetailPage(props) {
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      try {
-        const result = await pokeAPI.getOne(pokemonId);
-        setPokemon(result);
-      } catch(err) {
-        console.log(err);
-      }
+      const result = await pokeAPI.getOne(pokemonId);
+      setPokemon(result);
     }
     const fetchComments = async () => {
-      try {
-        const results = await commentAPI.get(pokemonId);
-        setComments(results);
-      } catch(err) {
-        console.log(err);
-      }
+      const results = await commentAPI.get(pokemonId);
+      setComments(results);
     }
     fetchPokemon();
     fetchComments();
@@ -45,7 +37,6 @@ function PokemonDetailPage(props) {
 
   const handleEditComment = async (commentData) => {
     const editedComment = await commentAPI.update(commentData);
-    console.log(editedComment);
     if (!editedComment.err) setComments(comments.map(comment =>
       comment._id === editedComment._id ? editedComment : comment));
   }
@@ -67,7 +58,7 @@ function PokemonDetailPage(props) {
           <Comment
             comment={comment}
           />
-          <CommentEdit 
+          <CommentEdit
             comment={comment}
             handleEditComment={handleEditComment}
             handleDeleteComment={handleDeleteComment}

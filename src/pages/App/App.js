@@ -15,12 +15,8 @@ function App() {
 
   useEffect(() => {
     const fetchAllPokemon = async () => {
-      try {
-        const { results } = await pokeAPI.getAll();
-        setAllPokemon(results);
-      } catch(err) {
-        console.log(err);
-      }
+      const { results } = await pokeAPI.getAll();
+      setAllPokemon(results);
     }
     fetchAllPokemon();
   }, []);

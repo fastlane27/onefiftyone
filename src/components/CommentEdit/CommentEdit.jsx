@@ -21,6 +21,7 @@ function CommentEdit(props) {
         <textarea
           value={commentData.content}
           onChange={handleChange}
+          required
         />
         <button type="submit">Submit</button>
       </form>

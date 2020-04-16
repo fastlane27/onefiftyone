@@ -14,7 +14,7 @@ async function create(req, res) {
     await comment.populate('createdBy').execPopulate();
     res.status(201).json(comment);
   } catch(err) {
-    res.status(500).json(err);
+    res.status(400).json({err: 'Invalid Submission'});
   }
 }
 
@@ -23,7 +23,7 @@ async function show(req, res) {
     const comments = await Comment.find({'pokemonId': req.params.id}).populate('createdBy');
     res.status(200).json(comments);
   } catch(err) {
-    res.status(500).json(err);
+    res.status(500).json({err: 'Internal Server Error'});
   }
 }
 
@@ -37,7 +37,7 @@ async function deleteOne(req, res) {
       res.status(401).json({err: 'Not Authorized'});
     }
   } catch(err) {
-    res.status(500).json(err);
+    res.status(400).json({err: 'Invalid Submission'});
   }
 }
 
@@ -53,6 +53,6 @@ async function update(req, res) {
       res.status(401).json({err: 'Not Authorized'});
     }
   } catch(err) {
-    res.status(500).json(err);
+    res.status(400).json({err: 'Invalid Submission'});
   }
 }
