@@ -33,7 +33,7 @@ function PokemonDetailPage(props) {
 
   const handleAddComment = async (commentData) => {
     commentData.pokemonId = pokemonId;
-    const newComment = await commentAPI.create(commentData, pokemonId);
+    const newComment = await commentAPI.create(commentData);
     if (!newComment.err) setComments([...comments, newComment]);
   }
 
@@ -45,6 +45,7 @@ function PokemonDetailPage(props) {
 
   const handleEditComment = async (commentData) => {
     const editedComment = await commentAPI.update(commentData);
+    console.log(editedComment);
     if (!editedComment.err) setComments(comments.map(comment =>
       comment._id === editedComment._id ? editedComment : comment));
   }

@@ -29,8 +29,13 @@ async function show(req, res) {
 
 async function deleteOne(req, res) {
   try {
-    const deletedComment = await Comment.findByIdAndDelete(req.params.id);
-    res.status(200).json(deletedComment);
+    const comment = await Comment.findById(req.params.id);
+    if (comment.createdBy.equals(req.user._id)) {
+      await comment.remove();
+      res.status(200).json(comment);
+    } else {
+      res.status(401).json({err: 'Not Authorized'});
+    }
   } catch(err) {
     res.status(500).json(err);
   }
