@@ -34,17 +34,19 @@ function PokemonDetailPage(props) {
   const handleAddComment = async (commentData) => {
     commentData.pokemonId = pokemonId;
     const newComment = await commentAPI.create(commentData, pokemonId);
-    setComments([...comments, newComment]);
+    if (!newComment.err) setComments([...comments, newComment]);
   }
 
   const handleDeleteComment = async (commentId) => {
-    await commentAPI.deleteOne(commentId);
-    setComments(comments.filter(comment => comment._id !== commentId));
+    const deletedComment = await commentAPI.deleteOne(commentId);
+    if (!deletedComment.err) setComments(comments.filter(comment =>
+      comment._id !== commentId));
   }
 
   const handleEditComment = async (commentData) => {
     const editedComment = await commentAPI.update(commentData);
-    setComments(comments.map(comment => comment._id === editedComment._id ? editedComment : comment));
+    if (!editedComment.err) setComments(comments.map(comment =>
+      comment._id === editedComment._id ? editedComment : comment));
   }
 
   return (
@@ -63,11 +65,11 @@ function PokemonDetailPage(props) {
         <div key={comment._id}>
           <Comment
             comment={comment}
-            handleDeleteComment={handleDeleteComment}
           />
           <CommentEdit 
             comment={comment}
             handleEditComment={handleEditComment}
+            handleDeleteComment={handleDeleteComment}
           />
         </div>
       )}

@@ -9,7 +9,7 @@ router.put('/:id', checkAuth, commentsCtrl.update);
 
 function checkAuth(req, res, next) {
   if (req.user) return next();
-  return res.status(401).json({msg: 'Not Authorized'});
+  return res.status(401).json({err: 'Not Authorized'});
 }
 
 module.exports = router;

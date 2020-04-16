@@ -24,6 +24,7 @@ function CommentEdit(props) {
         />
         <button type="submit">Submit</button>
       </form>
+      <button onClick={() => props.handleDeleteComment(props.comment._id)}>DELETE</button>
     </div>
   );
 }

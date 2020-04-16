@@ -5,7 +5,6 @@ function Comment(props) {
     <div>
       <h3>{props.comment.createdBy.name}</h3>
       <p>{props.comment.content}</p>
-      <button onClick={() => props.handleDeleteComment(props.comment._id)}>DELETE</button>
     </div>
   );
 }
