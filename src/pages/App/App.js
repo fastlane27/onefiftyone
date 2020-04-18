@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
+import NavBar from '../../components/NavBar/NavBar';
 import PokemonListPage from '../PokemonListPage/PokemonListPage';
 import PokemonDetailPage from '../PokemonDetailPage/PokemonDetailPage';
 import ForumPage from '../ForumPage/ForumPage';
@@ -33,18 +34,10 @@ function App() {
   return (
     <div>
       <header>
-        <nav>
-          <NavLink exact to="/">Pokemon</NavLink>
-          <NavLink exact to="/forum">Forum</NavLink>
-          <NavLink exact to="/signup">Sign Up</NavLink>
-          <NavLink exact to="/login">Log In</NavLink>
-          <NavLink to="" onClick={handleLogout}>Log Out</NavLink>
-        </nav>
-        {currentUser ?
-          <p>Logged in as {currentUser.name}</p>
-        :
-          <p>Not logged in.</p>
-        }
+        <NavBar
+          currentUser={currentUser}
+          handleLogout={handleLogout}
+        />
       </header>
       <main>
         <Switch>
@@ -55,7 +48,7 @@ function App() {
           } />
           <Route path="/pokemon/:id" render={({match}) => 
             <PokemonDetailPage
-              match={match}
+              pokemonId={match.params.id}
               currentUser={currentUser}
             />
           } />

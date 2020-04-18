@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import Pokemon from '../../components/Pokemon/Pokemon';
 import Comment from '../../components/Comment/Comment';
 import CommentForm from '../../components/CommentForm/CommentForm';
-import CommentEdit from '../../components/CommentEdit/CommentEdit';
 import pokeAPI from '../../services/pokeAPI';
 import commentAPI from '../../services/commentAPI';
 
 function PokemonDetailPage(props) {
   const [pokemon, setPokemon] = useState({});
   const [comments, setComments] = useState([]);
-  const pokemonId = props.match.params.id;
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      const result = await pokeAPI.getOne(pokemonId);
+      const result = await pokeAPI.getOne(props.pokemonId);
       setPokemon(result);
     }
     const fetchComments = async () => {
-      const results = await commentAPI.get(pokemonId);
+      const results = await commentAPI.get(props.pokemonId);
       setComments(results);
     }
     fetchPokemon();
     fetchComments();
-  }, [pokemonId]);
+  }, [props.pokemonId]);
 
   const handleAddComment = async (commentData) => {
-    commentData.pokemonId = pokemonId;
+    commentData.pokemonId = props.pokemonId;
     const newComment = await commentAPI.create(commentData);
     if (!newComment.err) setComments([...comments, newComment]);
   }
@@ -43,10 +42,9 @@ function PokemonDetailPage(props) {
 
   return (
     <div>
-      <h1>{pokemon.name}</h1>
-      <img
-        src={`${pokeAPI.IMAGE_URL}${pokemonId}.png`}
-        alt={pokemon.name}
+      <Pokemon 
+        pokemon={pokemon}
+        pokemonId={props.pokemonId}
       />
       {props.currentUser &&
         <CommentForm
@@ -54,16 +52,13 @@ function PokemonDetailPage(props) {
         />
       }
       {comments.map(comment =>
-        <div key={comment._id}>
-          <Comment
-            comment={comment}
-          />
-          <CommentEdit
-            comment={comment}
-            handleEditComment={handleEditComment}
-            handleDeleteComment={handleDeleteComment}
-          />
-        </div>
+        <Comment
+          comment={comment}
+          currentUser={props.currentUser}
+          handleEditComment={handleEditComment}
+          handleDeleteComment={handleDeleteComment}
+          key={comment._id}
+        />
       )}
     </div>
   );

@@ -20,7 +20,6 @@ function CommentForm(props) {
           placeholder="Leave a comment..."
           value={commentData.content}
           onChange={handleChange}
-          required
         />
         <button type="submit">POST</button>
       </form>

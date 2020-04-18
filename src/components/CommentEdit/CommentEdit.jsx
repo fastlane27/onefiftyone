@@ -13,15 +13,15 @@ function CommentEdit(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.handleEditComment(commentData);
+    props.toggleEdit();
   }
 
   return (
-    <div>
+    <div data-id={props.comment._id}>
       <form onSubmit={handleSubmit}>
         <textarea
           value={commentData.content}
           onChange={handleChange}
-          required
         />
         <button type="submit">Submit</button>
       </form>

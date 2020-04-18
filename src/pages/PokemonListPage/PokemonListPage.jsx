@@ -1,19 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './PokemonListPage.css';
+import PokemonCard from '../../components/PokemonCard/PokemonCard';
 
 function PokemonListPage(props) {
   return (
     <div>
       <h1>Pokemon</h1>
-      {props.allPokemon.map((p, idx) =>
-        <Link
-          className="pokemon-link"
-          to={'/pokemon/' + (idx + 1)}
-          key={idx}
-        >
-          {p.name}
-        </Link>
+      {props.allPokemon.map((pokemon, idx) =>
+        <PokemonCard
+          pokemon={pokemon}
+          pokemonId={idx + 1}
+          key={pokemon.name}
+        />
       )}
     </div>
   );
