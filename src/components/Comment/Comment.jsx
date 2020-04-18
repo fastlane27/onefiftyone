@@ -11,7 +11,9 @@ function Comment(props) {
   return (
     <div>
       <h3>{props.comment.createdBy.name}</h3>
-      <button onClick={() => toggleEdit()}>Edit</button>
+      {props.currentUser && props.currentUser._id === props.comment.createdBy._id &&
+        <button onClick={() => toggleEdit()}>Edit</button>
+      }
       {isVisible ?
         <CommentEdit
           comment={props.comment}
