@@ -17,6 +17,10 @@ function App() {
   useEffect(() => {
     const fetchAllPokemon = async () => {
       const { results } = await pokeAPI.getAll();
+      results.forEach(result => {
+        const urlArr = result.url.split('/');
+        result.id = urlArr[urlArr.length - 2];
+      });
       setAllPokemon(results);
     }
     fetchAllPokemon();

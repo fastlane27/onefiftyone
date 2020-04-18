@@ -7,7 +7,7 @@ function PokemonCard(props) {
     <div>
       <Link
           className="pokemon-link"
-          to={'/pokemon/' + props.pokemonId}
+          to={'/pokemon/' + props.pokemon.id}
         >
           {props.pokemon.name}
         </Link>

@@ -31,10 +31,9 @@ function PokemonListPage(props) {
         filterOptions={filterOptions}
         handleSearchChange={handleSearchChange}
       />
-      {filteredPokemon.map((pokemon, idx) =>
+      {filteredPokemon.map(pokemon =>
         <PokemonCard
           pokemon={pokemon}
-          pokemonId={idx + 1}
           key={pokemon.name}
         />
       )}
