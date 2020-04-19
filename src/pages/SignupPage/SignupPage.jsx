@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './SignupPage.module.scss';
 import userAPI from '../../services/userAPI';
 
 function SignupPage(props) {
@@ -41,8 +42,8 @@ function SignupPage(props) {
   }
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div className={styles.container}>
+      <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <input 
           type="text"

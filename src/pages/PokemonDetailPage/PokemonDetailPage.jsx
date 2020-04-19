@@ -44,7 +44,6 @@ function PokemonDetailPage(props) {
     <div>
       <Pokemon 
         pokemon={pokemon}
-        pokemonId={props.pokemonId}
       />
       {props.currentUser &&
         <CommentForm

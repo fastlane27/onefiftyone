@@ -1,0 +1,19 @@
+.container {
+  background-color: white;
+  padding: 50px 100px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+
+  h2 {
+    text-align: center;
+    font-weight: 600;
+  }
+
+  input {
+    display: block;
+    margin: 10px 0;
+    border: 1px solid grey;
+    border-radius: 3px;
+    padding: 5px;
+  }
+}

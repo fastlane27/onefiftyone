@@ -1,0 +1,21 @@
+.card {
+  max-width: 200px;
+  display: inline-block;
+  text-align: center;
+  padding: 20px;
+  margin: 5px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  // border: 5px solid yellow;
+  border-radius: 5px;
+
+  img {
+    width: 100%;
+    display: block;
+  }
+
+  h3 {
+    margin-top: 15px;
+    text-transform: capitalize;
+  }
+}

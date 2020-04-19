@@ -6,7 +6,7 @@ function Pokemon(props) {
     <div>
       <h1>{props.pokemon.name}</h1>
       <img
-        src={`${pokeAPI.IMAGE_URL}${props.pokemonId}.png`}
+        src={`${pokeAPI.IMAGE_URL}${props.pokemon.id}.png`}
         alt={props.pokemon.name}
       />
     </div>

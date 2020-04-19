@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
+import style from './App.module.css';
 import NavBar from '../../components/NavBar/NavBar';
 import PokemonListPage from '../PokemonListPage/PokemonListPage';
 import PokemonDetailPage from '../PokemonDetailPage/PokemonDetailPage';
-import ForumPage from '../ForumPage/ForumPage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userAPI from '../../services/userAPI';
@@ -36,14 +35,14 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <header>
         <NavBar
           currentUser={currentUser}
           handleLogout={handleLogout}
         />
       </header>
-      <main>
+      <main className={style.container}>
         <Switch>
           <Route exact path="/" render={() => 
             <PokemonListPage
@@ -55,9 +54,6 @@ function App() {
               pokemonId={match.params.id}
               currentUser={currentUser}
             />
-          } />
-          <Route exact path="/forum" render={() => 
-            <ForumPage />
           } />
           <Route exact path="/signup" render={({history}) => 
             <SignupPage
@@ -73,7 +69,7 @@ function App() {
           } />
         </Switch>
       </main>
-    </div>
+    </>
   );
 }
 

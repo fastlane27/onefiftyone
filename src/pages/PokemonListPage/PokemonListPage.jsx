@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import PokemonFilter from '../../components/PokemonFilter/PokemonFilter';
+import styles from './PokemonListPage.module.scss';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import Pagination from '../../components/Pagination/Pagination';
 
 function PokemonListPage(props) {
   const [filteredPokemon, setFilteredPokemon] = useState([]);
-  const [filterOptions, setFilterOptions] = useState({
-    search: ''
-  });
+  const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonPerPage] = useState(20);
 
@@ -18,13 +17,13 @@ function PokemonListPage(props) {
   useEffect(() => {
     const handleSearch = () => {
       setFilteredPokemon(props.allPokemon.filter(pokemon =>
-        pokemon.name.includes(filterOptions.search.toLowerCase())));
+        pokemon.name.includes(search.toLowerCase())));
     }
     handleSearch();
-  }, [props.allPokemon, filterOptions.search]);
+  }, [props.allPokemon, search]);
   
   const handleSearchChange = (e) => {
-    setFilterOptions({...filterOptions, search: e.target.value});
+    setSearch(e.target.value);
   }
 
   const indexOfLastPokemon = currentPage * pokemonPerPage;
@@ -36,16 +35,18 @@ function PokemonListPage(props) {
   return (
     <div>
       <h1>Pokemon</h1>
-      <PokemonFilter
-        filterOptions={filterOptions}
+      <SearchBar
+        search={search}
         handleSearchChange={handleSearchChange}
       />
-      {currentPokemon.map(pokemon =>
-        <PokemonCard
-          pokemon={pokemon}
-          key={pokemon.id}
-        />
-      )}
+      <div className={styles.cardContainer}>
+        {currentPokemon.map(pokemon =>
+          <PokemonCard
+            pokemon={pokemon}
+            key={pokemon.id}
+          />
+        )}
+      </div>
       <Pagination
         total={filteredPokemon.length}
         totalPerPage={pokemonPerPage}
