@@ -1,0 +1,13 @@
+header {
+  background-color: #FF4D4D;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 100%;
+  max-width: 1060px;
+  display: flex;
+  justify-content: center;
+}

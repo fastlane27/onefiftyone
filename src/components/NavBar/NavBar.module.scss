@@ -1,5 +1,36 @@
-.container {
-  background-color: rgb(255, 49, 49);
+.navbar {
+  width: 100%;
+  max-width: 1060px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  
+  h1 {
+    font-size: 28px;
+  }
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    height: 100%;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background-color: #FF1A1A;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
 }
