@@ -10,7 +10,7 @@ function PokemonCard(props) {
         src={`${pokeAPI.IMAGE_URL}${props.pokemon.id}.png`}
         alt={props.pokemon.name}
       />
-      <h3>{props.pokemon.name}</h3>  
+      <h3>{props.pokemon.name}</h3>
     </Link>
   );
 }
