@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './SignupPage.module.scss';
+import styles from '../../styles/form.module.scss';
 import userAPI from '../../services/userAPI';
 
 function SignupPage(props) {
@@ -42,7 +42,7 @@ function SignupPage(props) {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.form}>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <input 
@@ -73,10 +73,10 @@ function SignupPage(props) {
           name="passwordConf"
           onChange={handleChange}
         />
-        <button type="submit" disabled={isFormInvalid()}>Sign Up</button>
+        <p>{message}</p>
+        <button type="submit" disabled={isFormInvalid()}>SIGN UP</button>
       </form>
-      <p>{message}</p>
-      <Link to='/'>Cancel</Link>
+      <Link to='/' className={styles.link}>Cancel</Link>
     </div>
   );
 }

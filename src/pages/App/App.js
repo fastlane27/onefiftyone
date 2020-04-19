@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import style from './App.module.css';
+import styles from './App.module.css';
 import NavBar from '../../components/NavBar/NavBar';
 import PokemonListPage from '../PokemonListPage/PokemonListPage';
 import PokemonDetailPage from '../PokemonDetailPage/PokemonDetailPage';
@@ -42,7 +42,7 @@ function App() {
           handleLogout={handleLogout}
         />
       </header>
-      <main className={style.container}>
+      <main className={styles.container}>
         <Switch>
           <Route exact path="/" render={() => 
             <PokemonListPage
