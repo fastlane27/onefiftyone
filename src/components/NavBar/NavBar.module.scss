@@ -7,24 +7,15 @@
   height: 50px;
   
   h1 {
+    font-weight: 600;
     font-size: 28px;
+    color: #FFDE00;
+    text-shadow: 2px 2px #3b4cca;
   }
-
-  ul {
+  
+  div {
     display: flex;
-    list-style-type: none;
     height: 100%;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    cursor: pointer;
-  }
-
-  li:hover {
-    background-color: #FF1A1A;
   }
 }
 
@@ -33,4 +24,13 @@
   color: white;
   font-weight: 600;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
 }
+
+.link:hover {
+  background-color: #FF1A1A;
+}
+
+// @media all 

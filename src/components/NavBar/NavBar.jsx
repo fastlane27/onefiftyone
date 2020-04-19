@@ -6,41 +6,31 @@ function NavBar(props) {
   return (
     <nav className={styles.navbar}>
       <h1>OneFiftyOne</h1>
-      <ul>
-        <li>
-          <NavLink className={styles.link} exact to="/">POKEMON</NavLink>
-        </li>
+      <div>
+        <NavLink className={styles.link} exact to="/">POKEMON</NavLink>
         {props.currentUser ?
           <>
-            <li>
-              <NavLink
-                className={styles.link}
-                exact to=""
-              >
-                {props.currentUser.name}
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={styles.link}
-                to=""
-                onClick={props.handleLogout}
-              >
-                Log Out
-              </NavLink>
-            </li>
+            <NavLink
+              className={styles.link}
+              exact to=""
+            >
+              {props.currentUser.name}
+            </NavLink>
+            <NavLink
+              className={styles.link}
+              to=""
+              onClick={props.handleLogout}
+            >
+              Log Out
+            </NavLink>
           </>
         :
           <>
-            <li>
-              <NavLink className={styles.link} exact to="/signup">SIGN UP</NavLink>
-            </li>
-            <li>
-              <NavLink className={styles.link} exact to="/login">LOG IN</NavLink>
-            </li>
+            <NavLink className={styles.link} exact to="/signup">SIGN UP</NavLink>
+            <NavLink className={styles.link} exact to="/login">LOG IN</NavLink>
           </>
         }
-      </ul>
+      </div>
     </nav>
   );
 }
