@@ -1,18 +1,8 @@
-.form {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 20px 0;
-  padding: 0 10px;
-  
+.edit {
+  // background-color: red;
+
   form {
-    background-color: white;
     text-align: right;
-    width: 100%;
-    max-width: 800px;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
   }
 
   textarea {
@@ -21,6 +11,7 @@
     height: 54px;
     width: 100%;
     padding: 8px;
+    margin: 10px 0;
     border: 1px solid #BDBDBD;
     border-radius: 6px;
     font-size: 13px;
@@ -34,16 +25,27 @@
   button {
     border: none;
     border-radius: 6px;
-    padding: 8px 18px;
-    margin-top: 10px;
-    background-color: #6270D5;
+    padding: 8px 16px;
     color: white;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
   }
+}
 
-  button:hover {
-    background-color: #3B4CCA;
-  }
+.save {
+  background-color: #6270D5;
+  margin-right: 10px;
+}
+
+.save:hover {
+  background-color: #3B4CCA;
+}
+
+.delete {
+  background-color: #FF4D4D;
+}
+
+.delete:hover {
+  background-color: #FF1A1A;
 }

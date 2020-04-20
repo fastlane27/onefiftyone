@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './CommentEdit.module.scss';
 
 function CommentEdit(props) {
   const [commentData, setCommentData] = useState(props.comment);
@@ -17,15 +18,20 @@ function CommentEdit(props) {
   }
 
   return (
-    <div data-id={props.comment._id}>
+    <div data-id={props.comment._id} className={styles.edit}>
       <form onSubmit={handleSubmit}>
         <textarea
           value={commentData.content}
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" className={styles.save}>SAVE</button>
+        <button 
+          onClick={() => props.handleDeleteComment(props.comment._id)}
+          className={styles.delete}
+        >
+          DELETE
+        </button>
       </form>
-      <button onClick={() => props.handleDeleteComment(props.comment._id)}>DELETE</button>
     </div>
   );
 }

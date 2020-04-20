@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './PokemonDetailPage.module.css';
 import Pokemon from '../../components/Pokemon/Pokemon';
 import Comment from '../../components/Comment/Comment';
 import CommentForm from '../../components/CommentForm/CommentForm';
@@ -59,6 +60,7 @@ function PokemonDetailPage(props) {
           key={comment._id}
         />
       )}
+      <div className={styles.spacing}></div>
     </>
   );
 }

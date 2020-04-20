@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 800px;
   margin: 5px 20px;
-  padding: 15px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
   // display: flex;
@@ -18,7 +18,7 @@
   h3 {
     font-size: 18px;
     font-weight: 600;
-    color: #3B4CCA;
+    color: #6270D5;
     display: inline-block;
   }
 
@@ -26,7 +26,7 @@
     border: none;
     border-radius: 6px;
     padding: 5px 12px;
-    background-color: #3B4CCA;
+    background-color: #6270D5;
     color: white;
     font-size: 13px;
     font-weight: 600;
@@ -34,18 +34,17 @@
   }
 
   button:hover {
-    background-color: #6270D5;
+    background-color: #3B4CCA;
   }
 }
 
 .content {
+  background-color: white;
   color: #424242;
   font-size: 14px;
-  border: 1px solid #BDBDBD;
   border-radius: 6px;
-  padding: 12px 14px;
   overflow-wrap: break-word;
-  margin: 15px 0;
+  margin: 10px 0 15px 0;
 }
 
 .date {
