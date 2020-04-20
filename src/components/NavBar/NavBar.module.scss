@@ -33,3 +33,24 @@
 .link:hover {
   background-color: #FF1A1A;
 }
+
+@media all and (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    height: 90px;
+
+    h1 {
+      font-size: 20px;
+      margin: -5px 0 -5px 0;
+    }
+
+    div {
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+
+  .link {
+    font-size: 14px;
+  }
+}

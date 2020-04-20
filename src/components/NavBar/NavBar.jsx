@@ -14,14 +14,14 @@ function NavBar(props) {
               className={styles.link}
               exact to=""
             >
-              {props.currentUser.name}
+              {props.currentUser.name.toUpperCase()}
             </NavLink>
             <NavLink
               className={styles.link}
               to=""
               onClick={props.handleLogout}
             >
-              Log Out
+              LOG OUT
             </NavLink>
           </>
         :
