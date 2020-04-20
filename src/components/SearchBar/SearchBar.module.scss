@@ -1,0 +1,22 @@
+.search {
+  margin: 100px 0 40px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  
+  input {
+    display: block;
+    border: 2px solid #C4C9EF;
+    border-radius: 50px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 500px;
+    padding: 10px 20px;
+    margin: 0 20px;
+    color: #6270D5;
+  }
+
+  input:focus {
+    border-color: #6270D5;
+  }
+}

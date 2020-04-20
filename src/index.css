@@ -13,7 +13,7 @@
 
 body {
   background-image: url("./images/kanto_map.jpg");
-  background-position: center;
+  background-position: top;
   background-repeat: repeat-y;
 }
 

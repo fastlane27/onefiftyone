@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './PokemonListPage.module.scss';
+import styles from './PokemonListPage.module.css';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import Pagination from '../../components/Pagination/Pagination';
@@ -33,8 +33,7 @@ function PokemonListPage(props) {
   const paginate = (pageNum) => setCurrentPage(pageNum)
 
   return (
-    <div>
-      <h1>Pokemon</h1>
+    <>
       <SearchBar
         search={search}
         handleSearchChange={handleSearchChange}
@@ -52,7 +51,7 @@ function PokemonListPage(props) {
         totalPerPage={pokemonPerPage}
         paginate={paginate}
       />
-    </div>
+    </>
   );
 }
 

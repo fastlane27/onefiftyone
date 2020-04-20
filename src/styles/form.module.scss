@@ -23,7 +23,7 @@
     display: block;
     margin: 15px 0;
     border: 1px solid #BDBDBD;
-    border-radius: 3px;
+    border-radius: 4px;
     padding: 8px;
     width: 250px;
     font-size: 13px;
@@ -31,7 +31,7 @@
   }
 
   input:focus {
-    border: 1px solid #6270D5;
+    border-color: #6270D5;
   }
 
   p {
