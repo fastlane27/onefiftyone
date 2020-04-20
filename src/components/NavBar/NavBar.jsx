@@ -10,15 +10,12 @@ function NavBar(props) {
         <NavLink className={styles.link} exact to="/">POKÉMON</NavLink>
         {props.currentUser ?
           <>
-            <NavLink
-              className={styles.link}
-              exact to=""
-            >
+            <span className={styles.link}>
               {props.currentUser.name.toUpperCase()}
-            </NavLink>
+            </span>
             <NavLink
               className={styles.link}
-              to=""
+              exact to="/"
               onClick={props.handleLogout}
             >
               LOG OUT

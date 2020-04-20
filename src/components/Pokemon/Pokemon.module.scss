@@ -1,3 +1,10 @@
+.outer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
+}
+
 .container {
   margin: 120px 0 80px 0;
   background-color: white;
@@ -78,5 +85,21 @@
 
   tr:nth-child(odd) {
     background-color: #EBEDFA;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .container {
+    display: block;
+    max-width: 400px;
+  }
+
+  .info {
+    margin-left: 0;
+    padding: 0px 10px 5px 10px;
+  }
+
+  .type {
+    margin-bottom: 25px;
   }
 }

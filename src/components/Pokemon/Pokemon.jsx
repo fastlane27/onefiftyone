@@ -44,17 +44,19 @@ function Pokemon(props) {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.pokemon}>
-        <h1>{props.pokemon.name}</h1>
-        <img
-          src={`${pokeAPI.IMAGE_URL}${props.pokemon.id}.png`}
-          alt={props.pokemon.name}
-        />
-      </div>
-      <div className={styles.info}>
-        <PokemonType />
-        <PokemonStats />
+    <div className={styles.outer}>
+      <div className={styles.container}>
+        <div className={styles.pokemon}>
+          <h1>{props.pokemon.name}</h1>
+          <img
+            src={`${pokeAPI.IMAGE_URL}${props.pokemon.id}.png`}
+            alt={props.pokemon.name}
+          />
+        </div>
+        <div className={styles.info}>
+          <PokemonType />
+          <PokemonStats />
+        </div>
       </div>
     </div>
   );
