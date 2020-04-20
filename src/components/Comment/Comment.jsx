@@ -4,10 +4,12 @@ import CommentEdit from '../CommentEdit/CommentEdit';
 
 function Comment(props) {
   const [isVisible, setIsVisible] = useState(false);
-
+  
   const toggleEdit = () => {
     setIsVisible(!isVisible);
   }
+  
+  const dateCreated = new Date(props.comment.createdAt);
 
   return (
     <div className={styles.comment}>
@@ -27,7 +29,7 @@ function Comment(props) {
       :
         <>
           <p className={styles.content}>{props.comment.content}</p>
-          <p className={styles.date}>{props.comment.createdAt}</p>
+          <p className={styles.date}>{dateCreated.toLocaleString()}</p>
         </>
       }
     </div>
