@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import NavBar from '../../components/NavBar/NavBar';
+import Footer from '../../components/Footer/Footer';
 import PokemonListPage from '../PokemonListPage/PokemonListPage';
 import PokemonDetailPage from '../PokemonDetailPage/PokemonDetailPage';
 import SignupPage from '../SignupPage/SignupPage';
@@ -69,6 +70,7 @@ function App() {
           } />
         </Switch>
       </main>
+      <Footer />
     </>
   );
 }
