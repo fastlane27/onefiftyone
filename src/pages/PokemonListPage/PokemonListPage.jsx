@@ -24,13 +24,14 @@ function PokemonListPage(props) {
   
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
+    setCurrentPage(1);
   }
 
   const indexOfLastPokemon = currentPage * pokemonPerPage;
   const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
   const currentPokemon = filteredPokemon.slice(indexOfFirstPokemon, indexOfLastPokemon);
 
-  const paginate = (pageNum) => setCurrentPage(pageNum)
+  const paginate = (pageNum) => setCurrentPage(pageNum);
 
   return (
     <>
@@ -50,6 +51,7 @@ function PokemonListPage(props) {
         total={filteredPokemon.length}
         totalPerPage={pokemonPerPage}
         paginate={paginate}
+        currentPage={currentPage}
       />
     </>
   );

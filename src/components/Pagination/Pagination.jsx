@@ -14,6 +14,7 @@ function Pagination(props) {
         <li
           onClick={() => props.paginate(num)}
           key={num}
+          className={num === props.currentPage ? styles.current : null}
         >
           {num}
         </li>
