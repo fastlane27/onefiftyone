@@ -41,7 +41,7 @@ function PokemonDetailPage(props) {
   }
 
   return (
-    <div>
+    <>
       <Pokemon 
         pokemon={pokemon}
       />
@@ -59,7 +59,7 @@ function PokemonDetailPage(props) {
           key={comment._id}
         />
       )}
-    </div>
+    </>
   );
 }
 

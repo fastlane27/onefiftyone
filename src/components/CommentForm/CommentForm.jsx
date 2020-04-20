@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './CommentForm.module.scss';
 
 function CommentForm(props) {
   const [commentData, setCommentData] = useState({content: ''});
@@ -14,7 +15,7 @@ function CommentForm(props) {
   }
 
   return (
-    <div>
+    <div className={styles.form}>
       <form onSubmit={handleSubmit}>
         <textarea
           placeholder="Leave a comment..."
