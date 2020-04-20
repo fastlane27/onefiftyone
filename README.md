@@ -16,7 +16,7 @@ OneFiftyOne is a basic web application built with React that consumes the [PokeA
 - Sass
 
 ## Getting Started
-**[Click here](http://one-fifty-one.herokuapp.com/games) to view the app.**  
+**[Click here](http://one-fifty-one.herokuapp.com/) to view the app.**  
 [Click here](https://trello.com/b/mFqniWzP/one-fifty-one) to view the trello board.
 
 ## Next Steps
