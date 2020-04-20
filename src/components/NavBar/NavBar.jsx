@@ -7,7 +7,7 @@ function NavBar(props) {
     <nav className={styles.navbar}>
       <h1>OneFiftyOne</h1>
       <div>
-        <NavLink className={styles.link} exact to="/">POKEMON</NavLink>
+        <NavLink className={styles.link} exact to="/">POKÉMON</NavLink>
         {props.currentUser ?
           <>
             <NavLink

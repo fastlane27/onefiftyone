@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Pokemon";
+  src: local("Pokemon"), url(./fonts/Pokemon.ttf) format("truetype");
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
