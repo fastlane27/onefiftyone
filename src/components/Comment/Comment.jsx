@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './Comment.module.scss';
 import CommentEdit from '../CommentEdit/CommentEdit';
 
 function Comment(props) {
@@ -9,11 +10,13 @@ function Comment(props) {
   }
 
   return (
-    <div>
-      <h3>{props.comment.createdBy.name}</h3>
-      {props.currentUser && props.currentUser._id === props.comment.createdBy._id &&
-        <button onClick={() => toggleEdit()}>Edit</button>
-      }
+    <div className={styles.comment}>
+      <div className={styles.name}>
+        <h3>{props.comment.createdBy.name}</h3>
+        {props.currentUser && props.currentUser._id === props.comment.createdBy._id &&
+          <button onClick={() => toggleEdit()}>Edit</button>
+        }
+      </div>
       {isVisible ?
         <CommentEdit
           comment={props.comment}
@@ -22,7 +25,10 @@ function Comment(props) {
           toggleEdit={toggleEdit}
         />
       :
-        <p>{props.comment.content}</p>
+        <>
+          <p className={styles.content}>{props.comment.content}</p>
+          <p className={styles.date}>{props.comment.createdAt}</p>
+        </>
       }
     </div>
   );
