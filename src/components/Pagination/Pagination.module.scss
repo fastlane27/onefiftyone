@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  margin: 30px 0 100px 0;
+  list-style-type: none;
+  font-size: 16px;
+  color: #6270D5;
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+
+  li {
+    width: 30px;
+    padding: 4px 0;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background-color: #C4C9EF;
+    color: white;
+  }
+}

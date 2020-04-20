@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Pagination.module.scss';
 
 function Pagination(props) {
   const pageNums = [];
@@ -8,7 +9,7 @@ function Pagination(props) {
   }
 
   return (
-    <ul>
+    <ul className={styles.pagination}>
       {pageNums.map(num => (
         <li
           onClick={() => props.paginate(num)}
