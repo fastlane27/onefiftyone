@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './PokemonListPage.module.css';
+import Logo from '../../components/Logo/Logo';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import Pagination from '../../components/Pagination/Pagination';
@@ -35,6 +36,7 @@ function PokemonListPage(props) {
 
   return (
     <>
+      <Logo />
       <SearchBar
         search={search}
         handleSearchChange={handleSearchChange}
